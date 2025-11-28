@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yash Wasnik - AI Portfolio & GenAI Capabilities</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #000000;
+            --black-soft: #0a0a0a;
+            --black-card: #111111;
+            --black-border: #1a1a1a;
+            --accent-purple: #8b5cf6;
+            --accent-blue: #3b82f6;
+            --accent-pink: #ec4899;
+            --accent-cyan: #06b6d4;
+            --accent-green: #10b981;
+            --white: #ffffff;
+            --gray-light: rgba(255, 255, 255, 0.1);
+            --gray-medium: rgba(255, 255, 255, 0.3);
+            --gray-heavy: rgba(255, 255, 255, 0.6);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--white);
+            background: var(--black);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated Grid Background */
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background-image: 
+                linear-gradient(rgba(139, 92, 246, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(139, 92, 246, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        /* Floating Orbs */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            animation: float 20s ease-in-out infinite;
+            z-index: 0;
+        }
+
+        .orb-1 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--accent-purple), transparent);
+            top: -300px;
+            left: -300px;
+            animation-duration: 25s;
+        }
+
+        .orb-2 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--accent-blue), transparent);
+            bottom: -250px;
+            right: -250px;
+            animation-duration: 30s;
+            animation-delay: -5s;
+        }
+
+        .orb-3 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, var(--accent-pink), transparent);
+            top: 50%;
+            right: 10%;
+            animation-duration: 20s;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.1); }
+            66% { transform: translate(-30px, 30px) scale(0.9); }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            padding: 100px 20px;
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 5.5em;
+            font-weight: 900;
+            font-family: 'Space Grotesk', sans-serif;
+            background: linear-gradient(135deg, var(--white) 0%, var(--gray-heavy) 50%, var(--accent-purple) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 25px;
+            letter-spacing: -3px;
+            line-height: 1.1;
+            text-shadow: 0 0 80px rgba(139, 92, 246, 0.5);
+        }
+
+        .hero .tagline {
+            font-size: 1.8em;
+            color: var(--gray-heavy);
+            font-weight: 300;
+            margin-bottom: 60px;
+            letter-spacing: 2px;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 80px;
+            flex-wrap: wrap;
+        }
+
+        .stat-box {
+            text-align: center;
+            padding: 30px 40px;
+            background: var(--black-card);
+            border: 1px solid var(--black-border);
+            border-radius: 20px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .stat-box:hover::before {
+            left: 100%;
+        }
+
+        .stat-box:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-purple);
+            box-shadow: 0 20px 60px rgba(139, 92, 246, 0.3);
+        }
+
+        .stat-number {
+            font-size: 4em;
+            font-weight: 900;
+            font-family: 'Space Grotesk', sans-serif;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+        }
+
+        .stat-label {
+            color: var(--gray-heavy);
+            font-size: 1em;
+            margin-top: 10px;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        /* Section Styles */
+        .section {
+            background: var(--black-card);
+            border: 1px solid var(--black-border);
+            padding: 80px 50px;
+            margin: 80px 0;
+            border-radius: 30px;
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-purple), var(--accent-blue), var(--accent-pink));
+            opacity: 0.5;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .section h2 {
+            font-size: 3.5em;
+            font-weight: 900;
+            font-family: 'Space Grotesk', sans-serif;
+            background: linear-gradient(135deg, var(--white) 0%, var(--accent-purple) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 50px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            letter-spacing: -2px;
+        }
+
+        .section h2 i {
+            font-size: 0.7em;
+            color: var(--accent-purple);
+            filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.5));
+        }
+
+        .section h3 {
+            color: var(--white);
+            font-size: 2em;
+            margin: 40px 0 20px 0;
+            font-weight: 700;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        /* Executive Summary */
+        .executive-summary {
+            font-size: 1.3em;
+            line-height: 2;
+            color: var(--gray-heavy);
+        }
+
+        .key-achievements {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .achievement-card {
+            background: var(--black-soft);
+            padding: 35px;
+            border-radius: 20px;
+            border: 1px solid var(--black-border);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .achievement-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(59, 130, 246, 0.1));
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .achievement-card:hover::after {
+            opacity: 1;
+        }
+
+        .achievement-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+            transition: left 0.6s;
+        }
+
+        .achievement-card:hover::before {
+            left: 100%;
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-purple);
+            box-shadow: 0 20px 50px rgba(139, 92, 246, 0.2);
+        }
+
+        .achievement-card i {
+            font-size: 2.5em;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.5));
+        }
+
+        .achievement-card strong {
+            color: var(--white);
+            font-size: 1.2em;
+            font-weight: 700;
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 35px;
+            margin-top: 50px;
+        }
+
+        .project-card {
+            background: var(--black-soft);
+            padding: 40px;
+            border-radius: 25px;
+            border: 1px solid var(--black-border);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-purple), var(--accent-blue), var(--accent-pink));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .project-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.05), rgba(59, 130, 246, 0.05));
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .project-card:hover::after {
+            opacity: 1;
+        }
+
+        .project-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            border-color: var(--accent-purple);
+            box-shadow: 0 30px 80px rgba(139, 92, 246, 0.3);
+        }
+
+        .project-number {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 6em;
+            font-weight: 900;
+            font-family: 'Space Grotesk', sans-serif;
+            color: rgba(255, 255, 255, 0.03);
+            line-height: 1;
+            transition: all 0.5s;
+        }
+
+        .project-card:hover .project-number {
+            color: rgba(139, 92, 246, 0.1);
+            transform: scale(1.1);
+        }
+
+        .project-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+            color: var(--white);
+            padding: 10px 22px;
+            border-radius: 30px;
+            font-size: 0.85em;
+            font-weight: 700;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+            letter-spacing: 0.5px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-card h3 {
+            color: var(--white);
+            font-size: 1.7em;
+            margin-bottom: 20px;
+            font-weight: 800;
+            font-family: 'Space Grotesk', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-card h3 i {
+            font-size: 0.8em;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 8px rgba(139, 92, 246, 0.6));
+        }
+
+        .project-card p {
+            margin: 15px 0;
+            color: var(--gray-heavy);
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-card .impact {
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 1px solid var(--black-border);
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-card .impact strong {
+            color: var(--accent-purple);
+            font-weight: 700;
+        }
+
+        /* Capabilities Grid */
+        .capabilities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .capability-card {
+            background: var(--black-soft);
+            padding: 40px;
+            border-radius: 25px;
+            border: 1px solid var(--black-border);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .capability-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(59, 130, 246, 0.1));
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .capability-card:hover::before {
+            opacity: 1;
+        }
+
+        .capability-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-purple), var(--accent-blue));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s;
+        }
+
+        .capability-card:hover::after {
+            transform: scaleX(1);
+        }
+
+        .capability-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-purple);
+            box-shadow: 0 25px 60px rgba(139, 92, 246, 0.25);
+        }
+
+        .capability-card h4 {
+            color: var(--white);
+            font-size: 1.6em;
+            margin-bottom: 25px;
+            font-weight: 800;
+            font-family: 'Space Grotesk', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .capability-card h4 i {
+            font-size: 1.2em;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 8px rgba(139, 92, 246, 0.6));
+        }
+
+        .capability-card ul {
+            list-style: none;
+            padding: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .capability-card li {
+            padding: 12px 0;
+            color: var(--gray-heavy);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.05em;
+            transition: color 0.3s;
+        }
+
+        .capability-card li:hover {
+            color: var(--white);
+        }
+
+        .capability-card li::before {
+            content: '✓';
+            color: var(--accent-purple);
+            font-weight: bold;
+            font-size: 1.3em;
+            filter: drop-shadow(0 0 5px rgba(139, 92, 246, 0.8));
+        }
+
+        /* Value Props */
+        .value-prop {
+            background: var(--black-soft);
+            padding: 40px;
+            margin: 25px 0;
+            border-radius: 25px;
+            border-left: 4px solid var(--accent-purple);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .value-prop::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(59, 130, 246, 0.1));
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .value-prop:hover::before {
+            opacity: 1;
+        }
+
+        .value-prop:hover {
+            transform: translateX(15px);
+            border-left-color: var(--accent-blue);
+            box-shadow: 0 20px 50px rgba(139, 92, 246, 0.2);
+        }
+
+        .value-prop h4 {
+            color: var(--white);
+            font-size: 1.7em;
+            margin-bottom: 20px;
+            font-weight: 800;
+            font-family: 'Space Grotesk', sans-serif;
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .value-prop h4 i {
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .value-prop p {
+            color: var(--gray-heavy);
+            line-height: 1.9;
+            font-size: 1.1em;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            text-align: center;
+            background: linear-gradient(135deg, var(--black-card) 0%, var(--black-soft) 100%);
+            padding: 100px 50px;
+            border-radius: 30px;
+            margin: 80px 0;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--black-border);
+        }
+
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .contact-section h2 {
+            color: var(--white);
+            border: none;
+            font-size: 3.5em;
+            font-family: 'Space Grotesk', sans-serif;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+            font-weight: 900;
+            letter-spacing: -2px;
+        }
+
+        .contact-section p {
+            font-size: 1.3em;
+            margin-top: 30px;
+            position: relative;
+            z-index: 1;
+            color: var(--gray-heavy);
+            line-height: 1.8;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-info a {
+            color: var(--white);
+            text-decoration: none;
+            padding: 18px 40px;
+            background: var(--black-soft);
+            border: 2px solid var(--black-border);
+            border-radius: 50px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.05em;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-info a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+            transition: left 0.4s;
+            z-index: -1;
+        }
+
+        .contact-info a:hover::before {
+            left: 0;
+        }
+
+        .contact-info a:hover {
+            transform: translateY(-5px) scale(1.05);
+            border-color: var(--accent-purple);
+            box-shadow: 0 15px 40px rgba(139, 92, 246, 0.4);
+        }
+
+        .contact-info a i {
+            font-size: 1.3em;
+        }
+
+        /* Scroll Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3em;
+            }
+
+            .hero .tagline {
+                font-size: 1.3em;
+            }
+
+            .section h2 {
+                font-size: 2.5em;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .capabilities-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .key-achievements {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 50px 30px;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--black);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+            border-radius: 6px;
+            border: 2px solid var(--black);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+        }
+
+        /* Selection */
+        ::selection {
+            background: var(--accent-purple);
+            color: var(--white);
+        }
+
+        /* Smooth transitions */
+        * {
+            transition: color 0.3s ease, background-color 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Yash Wasnik</h1>
+                <p class="tagline">AI Consultant | Full-Stack AI Engineer | GenAI Specialist</p>
+                <div class="hero-stats">
+                    <div class="stat-box">
+                        <div class="stat-number">16+</div>
+                        <div class="stat-label">Production Systems</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">98-99%</div>
+                        <div class="stat-label">Accuracy Rate</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">5+</div>
+                        <div class="stat-label">Countries Served</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Executive Summary -->
+        <section class="section fade-in">
+            <h2><i class="fas fa-rocket"></i> Executive Summary</h2>
+            <div class="executive-summary">
+                <p>I'm a self-taught AI engineer who started from a <strong style="color: var(--accent-purple);">Biotechnology background</strong> and have built <strong style="color: var(--accent-purple);">16+ production-ready AI systems</strong> that are actually being used by real people and companies. My systems work across biotechnology, pharmaceuticals, healthcare, education, energy, smart cities, and business automation.</p>
+                
+                <p style="margin-top: 30px;"><strong style="color: var(--white);">What makes me different:</strong> I can build everything from the AI "brain" (the models that make predictions) all the way to the complete software platform that businesses actually use. This means I can deliver complete solutions faster and more cost-effectively than teams that need multiple specialists.</p>
+
+                <h3 style="margin-top: 50px; color: var(--white);">Key Achievements</h3>
+                <div class="key-achievements">
+                    <div class="achievement-card">
+                        <i class="fas fa-heartbeat"></i>
+                        <p><strong>Built healthcare AI</strong> that's <strong style="color: var(--accent-purple);">98-99% accurate</strong> at detecting diseases</p>
+                    </div>
+                    <div class="achievement-card">
+                        <i class="fas fa-flask"></i>
+                        <p><strong>Created nanoparticle toxicity</strong> prediction system that's <strong style="color: var(--accent-purple);">95.2% accurate</strong></p>
+                    </div>
+                    <div class="achievement-card">
+                        <i class="fas fa-dna"></i>
+                        <p><strong>Developed revolutionary</strong> metabolic health platform that predicts the best time to take medications</p>
+                    </div>
+                    <div class="achievement-card">
+                        <i class="fas fa-globe"></i>
+                        <p><strong>Hold copyrights</strong> for educational AI systems used by students in <strong style="color: var(--accent-purple);">5+ countries</strong></p>
+                    </div>
+                    <div class="achievement-card">
+                        <i class="fas fa-handshake"></i>
+                        <p><strong>Worked with</strong> international institutions, government agencies, and pharmaceutical companies</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section class="section fade-in">
+            <h2><i class="fas fa-project-diagram"></i> Most Impressive Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-number">01</div>
+                    <span class="project-status"><i class="fas fa-check-circle"></i> Production-Ready</span>
+                    <h3><i class="fas fa-stethoscope"></i> MediPredict - Healthcare AI</h3>
+                    <p><strong>Accuracy:</strong> 98-99%</p>
+                    <p>A healthcare AI system that detects diseases like diabetes, skin cancer, heart problems, and mental health issues by analyzing photos, voice recordings, and health data.</p>
+                    <div class="impact">
+                        <p><strong>Impact:</strong> Helps catch diseases early, saves time and money, makes healthcare accessible to more people.</p>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-number">02</div>
+                    <span class="project-status"><i class="fas fa-check-circle"></i> Production-Ready</span>
+                    <h3><i class="fas fa-dna"></i> AI Metabolic Health Platform</h3>
+                    <p><strong>Innovation:</strong> Revolutionary - First of its kind!</p>
+                    <p>A revolutionary AI platform that creates a "digital metabolic twin" - a virtual copy of your metabolism that predicts the best times to take medications, eat, exercise, and sleep.</p>
+                    <div class="impact">
+                        <p><strong>Impact:</strong> Helps manage metabolic diseases, saves pharmaceutical companies 6-12 months in drug development, targets $1.2 trillion market.</p>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-number">03</div>
+                    <span class="project-status"><i class="fas fa-check-circle"></i> Production-Ready</span>
+                    <h3><i class="fas fa-flask"></i> NanoToxi AI</h3>
+                    <p><strong>Accuracy:</strong> 95.2% | <strong>Domain:</strong> Drug Development</p>
+                    <p>An AI platform that predicts if nanoparticles used in drug development are safe. Traditional testing costs $5,000 and takes 3-6 months. This system does it in less than a second for $50.</p>
+                    <div class="impact">
+                        <p><strong>Impact:</strong> 99.9% cheaper than lab tests, speeds up drug development by 6-12 months.</p>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-number">04</div>
+                    <span class="project-status"><i class="fas fa-check-circle"></i> Production-Ready</span>
+                    <h3><i class="fas fa-cogs"></i> Unified AI-Automation Platform</h3>
+                    <p><strong>Integrations:</strong> 42+ apps</p>
+                    <p>A workflow automation platform that connects business apps together and automates repetitive tasks. Includes visual workflow builder and Smart Email Assistant with multi-persona AI.</p>
+                    <div class="impact">
+                        <p><strong>Impact:</strong> Saves businesses 20+ hours per week, reduces manual work by 80%+.</p>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-number">05</div>
+                    <span class="project-status"><i class="fas fa-check-circle"></i> Production-Ready</span>
+                    <h3><i class="fas fa-chart-line"></i> SAVERLY - Subscription SaaS</h3>
+                    <p><strong>Accuracy:</strong> 95%+ at predicting costs</p>
+                    <p>An AI-powered system that automatically manages subscriptions, predicts future costs, detects billing errors, and optimizes subscription spending.</p>
+                    <div class="impact">
+                        <p><strong>Impact:</strong> Saves businesses money, prevents billing fraud, reduces customer support costs.</p>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-number">06</div>
+                    <span class="project-status"><i class="fas fa-trophy"></i> YUVAi Competition</span>
+                    <h3><i class="fas fa-graduation-cap"></i> EduMitra/EduWellAI</h3>
+                    <p><strong>Languages:</strong> 6 languages</p>
+                    <p>An AI-powered educational platform that provides personalized learning in 6 languages, works offline, and monitors student stress levels.</p>
+                    <div class="impact">
+                        <p><strong>Impact:</strong> Serves students across multiple countries, makes quality education accessible in remote areas.</p>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-number">07</div>
+                    <span class="project-status"><i class="fas fa-check-circle"></i> Production-Ready</span>
+                    <h3><i class="fas fa-building"></i> Automation CRM System</h3>
+                    <p><strong>Architecture:</strong> Multi-tenant</p>
+                    <p>A white-label business automation platform that agencies can purchase and resell to their clients with complete branding customization.</p>
+                    <div class="impact">
+                        <p><strong>Impact:</strong> Creates recurring revenue opportunities, saves clients 20+ hours per week.</p>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-number">08</div>
+                    <span class="project-status"><i class="fas fa-check-circle"></i> Production-Ready</span>
+                    <h3><i class="fas fa-home"></i> Real Estate CRM</h3>
+                    <p>An AI-powered CRM system for real estate agents that automatically extracts information from emails and conversations, tracks deals, and creates smart follow-up reminders.</p>
+                    <div class="impact">
+                        <p><strong>Impact:</strong> Reduces manual data entry by 90%, improves deal conversion rates by 25%+.</p>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-number">09</div>
+                    <span class="project-status"><i class="fas fa-copyright"></i> Copyright Holder</span>
+                    <h3><i class="fas fa-book"></i> RASvigyan AI</h3>
+                    <p><strong>Reach:</strong> 5+ countries</p>
+                    <p>An educational AI chatbot system deployed in universities across 5+ countries. Provides instant, accurate answers about chemistry, botany, and plant sciences.</p>
+                    <div class="impact">
+                        <p><strong>Impact:</strong> Makes quality education accessible 24/7 globally, proven success across multiple countries.</p>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-number">10</div>
+                    <span class="project-status"><i class="fas fa-copyright"></i> Copyright Holder</span>
+                    <h3><i class="fas fa-seedling"></i> TreeSense AI</h3>
+                    <p><strong>Focus:</strong> Sustainable Agriculture</p>
+                    <p>An intelligent irrigation system that uses AI to optimize water usage and track carbon credits for sustainable agriculture.</p>
+                    <div class="impact">
+                        <p><strong>Impact:</strong> Reduces water usage by 30-40%, enables farmers to monetize carbon credits.</p>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-number">11</div>
+                    <span class="project-status"><i class="fas fa-check-circle"></i> Production-Ready</span>
+                    <h3><i class="fas fa-robot"></i> Multi-Agent AI Development</h3>
+                    <p><strong>Innovation:</strong> AI Agents Working Together</p>
+                    <p>A production-ready system where multiple specialized AI agents work together autonomously to complete software development tasks.</p>
+                    <div class="impact">
+                        <p><strong>Impact:</strong> Speeds up software development, reduces development costs through automation.</p>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-number">12</div>
+                    <span class="project-status"><i class="fas fa-check-circle"></i> Production-Ready</span>
+                    <h3><i class="fas fa-envelope"></i> Smart Email Assistant</h3>
+                    <p><strong>Innovation:</strong> Fine-tuned Multi-Persona Models</p>
+                    <p>An intelligent email system that monitors Gmail 24/7 and can automatically reply in different business personas (founder, marketing, CTO).</p>
+                    <div class="impact">
+                        <p><strong>Impact:</strong> Saves business owners 10+ hours per week on email management.</p>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-number">13</div>
+                    <span class="project-status"><i class="fas fa-check-circle"></i> Production-Ready</span>
+                    <h3><i class="fas fa-microphone"></i> Voice Agent</h3>
+                    <p><strong>Innovation:</strong> Works in 1,100+ Languages</p>
+                    <p>A production-ready voice agent that works in 1,100+ languages and can have intelligent conversations, not just simple commands.</p>
+                    <div class="impact">
+                        <p><strong>Impact:</strong> Makes voice technology accessible globally, enables voice-first applications in any language.</p>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-number">14</div>
+                    <span class="project-status"><i class="fas fa-check-circle"></i> Production-Ready</span>
+                    <h3><i class="fas fa-pills"></i> PharmIQ</h3>
+                    <p><strong>Domain:</strong> Medical Education</p>
+                    <p>An AI pharmacology assistant for medical students and healthcare professionals. Provides instant, comprehensive answers about drugs based on standard medical textbooks.</p>
+                    <div class="impact">
+                        <p><strong>Impact:</strong> Helps medical students master pharmacology faster, makes quality medical education accessible 24/7.</p>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-number">15</div>
+                    <span class="project-status"><i class="fas fa-check-circle"></i> Production-Ready</span>
+                    <h3><i class="fas fa-cube"></i> Blender MCP Bridge</h3>
+                    <p><strong>Innovation:</strong> AI-3D Integration</p>
+                    <p>A system that connects Blender to AI assistants, allowing users to create 3D models by describing what they want in plain English.</p>
+                    <div class="impact">
+                        <p><strong>Impact:</strong> Makes 3D modeling accessible to non-technical users, reduces 3D modeling time by 70%+.</p>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-number">16</div>
+                    <span class="project-status"><i class="fas fa-dna"></i> Research & Development</span>
+                    <h3><i class="fas fa-microscope"></i> AI-Guided Exosome Design</h3>
+                    <p><strong>Innovation:</strong> World's First AI-Guided Anti-Aging Therapeutics</p>
+                    <p>The world's first AI system that predicts which molecular therapies will reverse tissue aging, then validates those predictions through wet laboratory experiments.</p>
+                    <div class="impact">
+                        <p><strong>Impact:</strong> 1000x faster screening, 100x cost reduction, treatments for osteoarthritis, chronic wounds, cardiac fibrosis, and more. Represents a paradigm shift in drug discovery.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Capabilities Section -->
+        <section class="section fade-in">
+            <h2><i class="fas fa-brain"></i> GenAI Capabilities & Expertise</h2>
+            <div class="capabilities-grid">
+                <div class="capability-card">
+                    <h4><i class="fas fa-language"></i> Large Language Models</h4>
+                    <ul>
+                        <li>Customize AI models for specific purposes</li>
+                        <li>Build AI systems that search knowledge bases</li>
+                        <li>Create AI with different personalities</li>
+                        <li>Multi-language with cultural understanding</li>
+                    </ul>
+                </div>
+
+                <div class="capability-card">
+                    <h4><i class="fas fa-magic"></i> Generative AI Applications</h4>
+                    <ul>
+                        <li>AI Chatbots (educational, healthcare, support)</li>
+                        <li>AI Content Generation</li>
+                        <li>AI Reasoning systems</li>
+                        <li>AI Agents working together</li>
+                    </ul>
+                </div>
+
+                <div class="capability-card">
+                    <h4><i class="fas fa-cogs"></i> AI Model Training</h4>
+                    <ul>
+                        <li>Improve existing AI models</li>
+                        <li>Combine multiple AI models</li>
+                        <li>Optimize for speed and efficiency</li>
+                        <li>Deploy production-ready systems</li>
+                    </ul>
+                </div>
+
+                <div class="capability-card">
+                    <h4><i class="fas fa-plug"></i> AI Integration</h4>
+                    <ul>
+                        <li>Connect AI to any system</li>
+                        <li>Run AI locally or in cloud</li>
+                        <li>Create hybrid systems</li>
+                        <li>Real-time AI responses</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- What I Can Assist With -->
+        <section class="section fade-in">
+            <h2><i class="fas fa-handshake"></i> What I Can Assist With</h2>
+            <div class="value-prop">
+                <h4><i class="fas fa-briefcase"></i> 1. Client Project Delivery</h4>
+                <p>I can build complete AI solutions from start to finish: Biotechnology & Pharmaceutical AI, Healthcare AI, Educational AI, Business Automation, Energy & Smart Cities.</p>
+            </div>
+
+            <div class="value-prop">
+                <h4><i class="fas fa-users-cog"></i> 2. Technical Leadership</h4>
+                <p>I can lead AI projects and teams: Design AI systems, choose the right models, deploy scalable systems, optimize for accuracy and cost, mentor technical teams.</p>
+            </div>
+
+            <div class="value-prop">
+                <h4><i class="fas fa-bolt"></i> 3. Rapid Prototyping</h4>
+                <p>I can quickly demonstrate value: Build working prototypes in 2-4 weeks, create proof-of-concept demos, assess if AI can solve problems, analyze competitors.</p>
+            </div>
+
+            <div class="value-prop">
+                <h4><i class="fas fa-layer-group"></i> 4. Full-Stack Development</h4>
+                <p>I can build complete systems: Backend systems, frontend applications, database design, cloud deployment, multi-tenant architecture.</p>
+            </div>
+
+            <div class="value-prop">
+                <h4><i class="fas fa-code"></i> 5. GenAI Implementation</h4>
+                <p>I can implement cutting-edge AI: Integrate and customize LLMs, build RAG systems, create AI agents, build conversational AI, combine multiple AI types.</p>
+            </div>
+
+            <div class="value-prop">
+                <h4><i class="fas fa-chart-bar"></i> 6. Business Value Delivery</h4>
+                <p>I focus on ROI and business outcomes: Build solutions that deliver measurable value, design for growth, optimize costs, benchmark performance, train clients.</p>
+            </div>
+        </section>
+
+        <!-- Value Propositions -->
+        <section class="section fade-in">
+            <h2><i class="fas fa-star"></i> Unique Value Propositions</h2>
+            <div class="value-prop">
+                <h4><i class="fas fa-code-branch"></i> 1. Full-Stack AI Capability</h4>
+                <p>I can build both AI models and applications - faster delivery, lower costs, better integration. One person instead of a team.</p>
+            </div>
+
+            <div class="value-prop">
+                <h4><i class="fas fa-check-double"></i> 2. Production-Ready Experience</h4>
+                <p>16+ systems actually being used: 98-99% accuracy in critical applications, handles thousands of users, proven scalability, 24/7 reliability.</p>
+            </div>
+
+            <div class="value-prop">
+                <h4><i class="fas fa-briefcase"></i> 3. Business Acumen</h4>
+                <p>I understand how businesses work: Revenue models, ROI focus, client management, international experience across 5+ countries.</p>
+            </div>
+
+            <div class="value-prop">
+                <h4><i class="fas fa-graduation-cap"></i> 4. Rapid Learning & Adaptation</h4>
+                <p>Self-taught from Biotechnology background to building production AI systems - I can learn anything quickly.</p>
+            </div>
+
+            <div class="value-prop">
+                <h4><i class="fas fa-globe-americas"></i> 5. International Experience</h4>
+                <p>Worked with clients globally: 5+ countries, cross-cultural project management, global scalability, multilingual AI systems.</p>
+            </div>
+        </section>
+
+        <!-- Achievements -->
+        <section class="section fade-in">
+            <h2><i class="fas fa-trophy"></i> Recognition & Achievements</h2>
+            <div class="key-achievements">
+                <div class="achievement-card">
+                    <i class="fas fa-trophy"></i>
+                    <p><strong>YUVAi Competition Participant</strong> - EduMitra/EduWellAI Educational Platform</p>
+                </div>
+                <div class="achievement-card">
+                    <i class="fas fa-certificate"></i>
+                    <p><strong>Letters of Appreciation:</strong> Ministry of Green Economy and Environment (Zambia), Makerere University (Uganda)</p>
+                </div>
+                <div class="achievement-card">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <p><strong>AI/ML Training Delivery</strong> - Geological Survey of India</p>
+                </div>
+                <div class="achievement-card">
+                    <i class="fas fa-presentation"></i>
+                    <p><strong>Conference Presentation</strong> - GeoSage AI at Geological Survey of India</p>
+                </div>
+                <div class="achievement-card">
+                    <i class="fas fa-copyright"></i>
+                    <p><strong>Intellectual Property:</strong> Copyright holder for RASvigyan AI and TreeSense AI</p>
+                </div>
+                <div class="achievement-card">
+                    <i class="fas fa-bullseye"></i>
+                    <p><strong>Production Accuracy:</strong> 98-99% in healthcare diagnostics</p>
+                </div>
+                <div class="achievement-card">
+                    <i class="fas fa-globe"></i>
+                    <p><strong>International Reach:</strong> Projects serving 5+ countries</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact-section fade-in">
+            <h2>Let's Build the Future of AI Together! 🚀</h2>
+            <p>Ready to be part of something much bigger and help scale your AI consultancy to new heights.</p>
+            <div class="contact-info">
+                <a href="mailto:yashwasnik25@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+                <a href="https://linkedin.com/in/yashwasnik/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                <a href="tel:+918208352527"><i class="fas fa-phone"></i> Phone</a>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
